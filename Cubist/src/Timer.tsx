@@ -23,6 +23,9 @@ function Timer({ time }: TimerProps) {
 
     const handleKeyPress = (e: KeyboardEvent) => {
         if (e.code === 'Space') {
+            if (!isRunning) {
+                setCurrentTime(0);
+            }
             setIsRunning((prev) => !prev);
         }
     }
