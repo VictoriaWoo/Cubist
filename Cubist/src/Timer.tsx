@@ -4,12 +4,12 @@ type TimerProps = {
   time: number;
 };
 
-function Timer({ time }: TimerProps) {
+function Timer({ }: TimerProps) {
   const [min, setMin] = React.useState<number>(0);
   const [sec, setSec] = React.useState<number>(0);
   const [msec, setMsec] = React.useState<number>(0);
   const [isRunning, setIsRunning] = React.useState<boolean>(false);
-  const [currentTime, setCurrentTime] = React.useState<number>(0);
+  const [, setCurrentTime] = React.useState<number>(0);
 
   const makeTimeForm = (time: number): void => {
     const minutes = Math.floor(time / 60);
