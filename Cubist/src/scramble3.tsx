@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import kociemba from 'kociemba';
+import { Cube } from 'rubiks-cube-solver';
 
 const moves = ['U', 'U\'', 'U2', 'D', 'D\'', 'D2', 'L', 'L\'', 'L2', 'R', 'R\'', 'R2', 'F', 'F\'', 'F2', 'B', 'B\'', 'B2',];
 
@@ -8,6 +10,21 @@ function getRandomMove(): string {
 
 function getFace(move: string): string {
   return move.charAt(0);
+}
+
+function applyMove(cube: string, move: string): string {
+  const cubeInstance = new Cube(cube);
+  cubeInstance.move(move);
+  return cubeInstance.getState();
+}
+
+function solveCube(cubeState: string): string {
+  try {
+    return kociemba.solve(cubeState);
+  } catch (error) {
+    console.error('Error solving cube:', error);
+    return '';
+  }
 }
 
 function generateScramble(length: number): string {
