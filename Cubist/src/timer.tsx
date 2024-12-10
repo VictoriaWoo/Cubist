@@ -1,15 +1,15 @@
-import * as React from "react";
+import { useState, useEffect } from 'react';
 
 type TimerProps = {
   time: number;
 };
 
 function Timer({ }: TimerProps) {
-  const [min, setMin] = React.useState<number>(0);
-  const [sec, setSec] = React.useState<number>(0);
-  const [msec, setMsec] = React.useState<number>(0);
-  const [isRunning, setIsRunning] = React.useState<boolean>(false);
-  const [, setCurrentTime] = React.useState<number>(0);
+  const [min, setMin] = useState<number>(0);
+  const [sec, setSec] = useState<number>(0);
+  const [msec, setMsec] = useState<number>(0);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [, setCurrentTime] = useState<number>(0);
 
   const makeTimeForm = (time: number): void => {
     const minutes = Math.floor(time / 60);
@@ -30,7 +30,7 @@ function Timer({ }: TimerProps) {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isRunning) {
       const interval = setInterval(() => {
         setCurrentTime((prevTime) => {
@@ -44,7 +44,7 @@ function Timer({ }: TimerProps) {
     }
   }, [isRunning]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
