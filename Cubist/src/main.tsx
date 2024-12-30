@@ -1,12 +1,19 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import Timer from './timer.tsx'
-import './styles.css'
-import Scramble3 from './scramble3'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import Timer from "./timer";
+import Scramble3 from "./scramble3";
+import "./styles.css";
+import { useState } from "react";
 
-createRoot(document.getElementById('root')!).render(
+const App = () => {
+  const [timeList, setTimeList] = useState<Array<number>>([]);
+
+return(
   <StrictMode>
-    <Timer time={0} />
+    <Timer timeList={timeList} setTimeList={setTimeList} />
     <Scramble3 />
-  </StrictMode>,
-)
+  </StrictMode>
+  );
+};
+
+createRoot(document.getElementById("root")!).render(<App />);  

@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-type TimerProps = {
-  time: number;
-};
-
-function Timer({ }: TimerProps) {
+function Timer({
+  timeList,
+  setTimeList,
+}: {
+  timeList: Array<number>;
+  setTimeList: React.Dispatch<React.SetStateAction<Array<number>>>;
+}) {
   const [min, setMin] = useState<number>(0);
   const [sec, setSec] = useState<number>(0);
   const [msec, setMsec] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [, setCurrentTime] = useState<number>(0);
+  const [currentTime, setCurrentTime] = useState<number>(0);
 
   const makeTimeForm = (time: number): void => {
     const minutes = Math.floor(time / 60);
@@ -21,14 +23,23 @@ function Timer({ }: TimerProps) {
     setMsec(milliseconds);
   };
 
-  const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.code === 'Space') {
-      if (!isRunning) {
-        setCurrentTime(0);
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === "Space") {
+        if (!isRunning) {
+          setCurrentTime(0);
+        } else {
+          setTimeList([...timeList, currentTime]);
+        }
+        setIsRunning((prev) => !prev);
       }
-      setIsRunning((prev) => !prev);
-    }
-  };
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isRunning, currentTime]);
 
   useEffect(() => {
     if (isRunning) {
@@ -40,18 +51,13 @@ function Timer({ }: TimerProps) {
         });
       }, 10);
 
-      return () => clearInterval(interval);
+      return () => {
+        clearInterval(interval);
+      };
     }
   }, [isRunning]);
 
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress);
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, []);
-
-  const padZero = (num: number): string => num.toString().padStart(2, '0');
+  const padZero = (num: number): string => num.toString().padStart(2, "0");
 
   return (
     <div>
