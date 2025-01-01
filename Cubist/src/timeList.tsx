@@ -1,18 +1,13 @@
-import { useEffect } from "react";
+const TimeList: React.FC<{ timeList: Array<number>}> = ({timeList }) => {
+    return (
+        <div className="timeList-container">
+            {timeList.map((time: number, index: number) => (
+                <div key={index} className="time-box">
+                    {time.toFixed(2)}
+                </div>
+            ))}
+        </div>
+    );
+};
 
-useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.code === "Space") {
-            
-        }
-    }
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-        window.removeEventListener('keydown', handleKeyDown);
-      };
-}, [])
-
-function Box() {
-    return 
-}
+export default TimeList;

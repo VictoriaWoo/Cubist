@@ -29,7 +29,7 @@ function Timer({
         if (!isRunning) {
           setCurrentTime(0);
         } else {
-          setTimeList([...timeList, currentTime]);
+          setTimeList([currentTime, ...timeList]);
         }
         setIsRunning((prev) => !prev);
       }
@@ -48,6 +48,7 @@ function Timer({
           const newTime = prevTime + 0.01;
           makeTimeForm(newTime);
           return newTime;
+          console.log(newTime);
         });
       }, 10);
 
@@ -60,7 +61,7 @@ function Timer({
   const padZero = (num: number): string => num.toString().padStart(2, "0");
 
   return (
-    <div>
+    <div className="timer-container">
       <span className="time">{padZero(min)}</span>
       <span className="colon">:</span>
       <span className="time">{padZero(sec)}</span>

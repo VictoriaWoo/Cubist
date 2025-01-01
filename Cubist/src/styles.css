@@ -12,11 +12,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
   padding: 20px;
-  background-color: antiquewhite;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .time {
@@ -30,6 +26,35 @@ body {
   font-weight: bold;
   color:#333333;
   margin: 0 5px;
+}
+
+.scramble {
+  font-size: 1.5rem;
+  justify-content: center;
+}
+
+.timeList-container {
+  display: flex;
+  flex-direction: row;
+  outline: auto;
+  height: 14vh;
+  width: 90vw;
+  padding: 0 5px;
+  position: absolute;
+  top:4vh;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: scroll;
+  overflow-y: hidden;
+}
+
+.timeList-container > div {
+  background-color: antiquewhite;
+  margin: 10px;
+  outline: auto;
+  padding: 10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 25px;
 }
 
 span {
