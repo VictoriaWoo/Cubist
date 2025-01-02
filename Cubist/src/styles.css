@@ -33,19 +33,25 @@ body {
   justify-content: center;
 }
 
+.timeData {
+  display: flex;
+  flex-direction: column;
+  height: 23vh;
+  width: 95vw;
+  outline: auto;
+  overflow: scroll;
+  overflow-y: hidden;
+  position: absolute;
+  top:2vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .timeList-container {
   display: flex;
   flex-direction: row;
-  outline: auto;
-  height: 14vh;
-  width: 90vw;
+  height: 10vh;
   padding: 0 5px;
-  position: absolute;
-  top:4vh;
-  left: 50%;
-  transform: translateX(-50%);
-  overflow: scroll;
-  overflow-y: hidden;
 }
 
 .timeList-container > div {
@@ -54,7 +60,7 @@ body {
   outline: auto;
   padding: 10px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 span {
