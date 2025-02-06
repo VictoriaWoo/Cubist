@@ -28,20 +28,26 @@ function generateScramble(length: number): string {
   return scramble;
 }
 
-const Scramble3: React.FC = () => {
-  const [scramble, setScramble] = useState<string>('');
+function Scramble3 ({
+  scrambleCreated,
+  setScrambleCreated,
+}: {
+  scrambleCreated: string;
+  setScrambleCreated: React.Dispatch<React.SetStateAction<string>>  
+}) {
+
   const [toggle, setToggle] = useState<boolean>(true);
 
   useEffect(() => {
     const initialScramble = generateScramble(20);
-    setScramble(initialScramble);
+    setScrambleCreated(initialScramble);
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.code === 'Space') {
         setToggle((prevToggle) => !prevToggle);
         if (!toggle) {
           const newScramble = generateScramble(20);
-          setScramble(newScramble);
+          setScrambleCreated(newScramble);
         }
       }
     };
@@ -54,7 +60,7 @@ const Scramble3: React.FC = () => {
 
   return (
     <div className='scramble'>
-      <p>{scramble}</p>
+      <p>{scrambleCreated}</p>
     </div>
   );
 };

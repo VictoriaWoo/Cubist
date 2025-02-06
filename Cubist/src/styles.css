@@ -66,3 +66,10 @@ body {
 span {
   display: inline-block;
 }
+
+.scramble-display {
+  width: 30vh;
+  height: 20vh;
+  resize: both;
+  overflow: hidden;
+}
