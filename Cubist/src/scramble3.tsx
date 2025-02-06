@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const moves = ['U', 'U\'', 'U2', 'D', 'D\'', 'D2', 'L', 'L\'', 'L2', 'R', 'R\'', 'R2', 'F', 'F\'', 'F2', 'B', 'B\'', 'B2',];
 
@@ -37,6 +37,7 @@ function Scramble3 ({
 }) {
 
   const [toggle, setToggle] = useState<boolean>(true);
+  const prevToggleRef = useRef<boolean>(toggle);
 
   useEffect(() => {
     const initialScramble = generateScramble(20);
@@ -44,11 +45,11 @@ function Scramble3 ({
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.code === 'Space') {
-        setToggle((prevToggle) => !prevToggle);
-        if (!toggle) {
+        if (prevToggleRef.current == false) {
           const newScramble = generateScramble(20);
           setScrambleCreated(newScramble);
         }
+        prevToggleRef.current = !prevToggleRef.current;
       }
     };
 
